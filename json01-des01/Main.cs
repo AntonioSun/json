@@ -19,6 +19,8 @@ class ProgTest
         MoreTests.DeserializeDataSet();
         MoreTests.TestSqlGetDataTable();
 
+        JsonDemo.JsonDemoTest();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }
