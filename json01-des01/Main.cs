@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 using Newtonsoft.Json;
 
@@ -14,6 +13,7 @@ class ProgTest
 
         MoreTests.DeserializeCollection();
         MoreTests.DeserializeDictionary();
+        MoreTests.DeserializeDataSet();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
@@ -115,5 +115,38 @@ public class MoreTests
         Console.WriteLine(JsonConvert.SerializeObject(htmlAttributes, Formatting.Indented));
     }
 
+    // Deserialize a DataSet
+    // http://www.newtonsoft.com/json/help/html/DeserializeDataSet.htm
+    public static void DeserializeDataSet()
+    {
+        string json = @"{
+          'Table1': [
+            {
+              'id': 0,
+              'item': 'item 0'
+            },
+            {
+              'id': 1,
+              'item': 'item 1'
+            }
+          ]
+        }";
+
+        DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(json);
+
+        DataTable dataTable = dataSet.Tables["Table1"];
+
+        Console.WriteLine("\n## Deserialize a DataSet");
+        Console.WriteLine(dataTable.Rows.Count);
+        // 2
+
+        foreach (DataRow row in dataTable.Rows)
+        {
+            Console.WriteLine(row["id"] + " - " + row["item"]);
+        }
+        // 0 - item 0
+        // 1 - item 1
+        Console.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.Indented));
+    }
 
 }
