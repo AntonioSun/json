@@ -21,6 +21,8 @@ class ProgTest
 
         JsonDemo.JsonDemoTest();
 
+        ExtraFieldsDemo.ExtraFieldsTest();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }
