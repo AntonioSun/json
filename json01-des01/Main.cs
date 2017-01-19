@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
 using System.Data;
+using System.Data.SqlClient;
 
 using Newtonsoft.Json;
 
@@ -13,7 +15,9 @@ class ProgTest
 
         MoreTests.DeserializeCollection();
         MoreTests.DeserializeDictionary();
+        
         MoreTests.DeserializeDataSet();
+        MoreTests.TestSqlGetDataTable();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
@@ -149,4 +153,32 @@ public class MoreTests
         Console.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.Indented));
     }
 
+    public static void TestSqlGetDataTable()
+    {
+        DataTable dataTable = GetDataTable("SELECT top 5 name, recovery_model_desc FROM sys.databases order by name",
+            "Data Source=(local);Initial Catalog=master;Integrated Security=True");
+        Console.WriteLine(JsonConvert.SerializeObject(dataTable, Formatting.Indented));
+    }
+
+    public static DataTable GetDataTable(string _SqlCommand, string _ConnectionStr)
+    {
+        DataTable dataTable = new DataTable();
+
+        using (SqlConnection connection = new SqlConnection(_ConnectionStr))
+        using (SqlCommand cmd = connection.CreateCommand())
+        {
+            connection.Open();
+            cmd.CommandText = _SqlCommand;
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@City", txtCity.Text);
+
+            using (SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+            {
+                dataTable.Load(dr);
+            }
+        }
+        return dataTable;
+    }
 }
+
+
