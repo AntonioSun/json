@@ -12,6 +12,9 @@ class ProgTest
     {
         Account.DeserializeObject();
 
+        MoreTests.DeserializeCollection();
+        MoreTests.DeserializeDictionary();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }
@@ -80,3 +83,37 @@ public class Account
     }
 }
 
+public class MoreTests
+{
+    // Deserialize a Collection
+    // http://www.newtonsoft.com/json/help/html/DeserializeCollection.htm
+    public static void DeserializeCollection()
+    {
+        string json = @"['Starcraft','Halo','Legend of Zelda']";
+        List<string> videogames = JsonConvert.DeserializeObject<List<string>>(json);
+        Console.WriteLine("\n## Deserialize a Collection");
+        Console.WriteLine(string.Join(", ", videogames.ToArray()));
+        // Starcraft, Halo, Legend of Zelda
+    }
+
+    // Deserialize a Dictionary
+    // http://www.newtonsoft.com/json/help/html/DeserializeDictionary.htm
+    public static void DeserializeDictionary()
+    {
+        string json = @"{
+          'href': '/account/login.aspx',
+          'target': '_blank'
+        }";
+
+        Dictionary<string, string> htmlAttributes = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+        Console.WriteLine("\n## Deserialize a Dictionary");
+        Console.WriteLine(htmlAttributes["href"]);
+        // /account/login.aspx
+        Console.WriteLine(htmlAttributes["target"]);
+        // _blank
+        Console.WriteLine(JsonConvert.SerializeObject(htmlAttributes, Formatting.Indented));
+    }
+
+
+}
