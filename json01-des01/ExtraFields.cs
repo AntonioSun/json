@@ -51,5 +51,11 @@ public class ExtraFieldsDemo
         //    "_unknown_field_name_2": "some value"
         //  }
         //}
-	}
+        Console.WriteLine(person.other);
+        Console.WriteLine(person.other["birthplace"]);
+        Console.WriteLine(person.other["birthdate"]);
+        //System.Collections.Generic.Dictionary`2[System.String,System.Object]
+        //UK
+        //08/08/1913
+    }
 }
