@@ -17,7 +17,7 @@ namespace ToUseDL
 
     // X: public class Task : DotLiquid.ILiquidizable
     // 'ToUseDL.Task' does not implement interface member 'DotLiquid.ILiquidizable.ToLiquid()'
-    public class Task
+    public class Task : DotLiquid.Drop
     {
         public string Name { get; set; }
     }
@@ -52,7 +52,11 @@ namespace ToUseDL
                 //                </ul>
 
             MessageBody = template.Render(DotLiquid.Hash.FromAnonymousObject(new { user = user1 }));
-            //Liquid syntax error: Object 'ToUseDL.Task' is invalid because it is neither a built-in type nor implements ILiquidizable
+                //<p>TIM JONES has to do:</p>
+                //<ul>
+                //                  <li>Documentation</li>
+                //                  <li>Code comments</li>
+                //                </ul>       
 
             Console.WriteLine("\n## Using DotLiquid");
             Console.WriteLine(MessageBody);
