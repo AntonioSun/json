@@ -28,6 +28,9 @@ class ProgTest
         Template.RegisterSafeType(typeof(Demo1.ExampleViewModel), Hash.FromAnonymousObject);
         Demo1.DemoCustomObject();
 
+        // 
+        ToUseDL.ToTest.TestIt();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }
