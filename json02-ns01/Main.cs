@@ -18,7 +18,7 @@
  * Allowed namespace type names. In addition to using the normal alphanumeric names for namespaces, you can include 
  * the period separator in a namespace. This is a condensed version of having nested namespaces. E.g., F.F.
  * 
- * */
+ */
 
 using A.B.C;
 
