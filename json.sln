@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json01-des01", "json01-des0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json02-dotl01", "json02-dotl01\json02-dotl01.csproj", "{CAE47C47-0482-4341-9729-AC70D767F133}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json02-ns01", "json02-ns01\json02-ns01.csproj", "{FF241238-79DF-4F90-B3FD-E91207FC9164}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CAE47C47-0482-4341-9729-AC70D767F133}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAE47C47-0482-4341-9729-AC70D767F133}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAE47C47-0482-4341-9729-AC70D767F133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF241238-79DF-4F90-B3FD-E91207FC9164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF241238-79DF-4F90-B3FD-E91207FC9164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF241238-79DF-4F90-B3FD-E91207FC9164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF241238-79DF-4F90-B3FD-E91207FC9164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
