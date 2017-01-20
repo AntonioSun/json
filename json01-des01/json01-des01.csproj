@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dynamic.cs" />
     <Compile Include="ExtraFields.cs" />
     <Compile Include="JsonDemo.cs" />
     <Compile Include="Main.cs" />

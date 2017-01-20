@@ -11,6 +11,7 @@ class ProgTest
 {
     static void Main(string[] args)
     {
+        // In Main
         Account.DeserializeObject();
 
         MoreTests.DeserializeCollection();
@@ -19,9 +20,14 @@ class ProgTest
         MoreTests.DeserializeDataSet();
         MoreTests.TestSqlGetDataTable();
 
+        // From JsonDemo
         JsonDemo.JsonDemoTest();
 
+        // From ExtraFields
         ExtraFieldsDemo.ExtraFieldsTest();
+
+        // From Dynamic
+        DynamicDemo.DynamicTest();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
