@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-    class ProgTest
+class ProgTest
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-        }
     }
+}
