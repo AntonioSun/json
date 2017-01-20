@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json01-des01", "json01-des01\json01-des01.csproj", "{E0B476FA-7C75-4042-A007-D07734392CF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json02-dotl01", "json02-dotl01\json02-dotl01.csproj", "{CAE47C47-0482-4341-9729-AC70D767F133}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E0B476FA-7C75-4042-A007-D07734392CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0B476FA-7C75-4042-A007-D07734392CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0B476FA-7C75-4042-A007-D07734392CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAE47C47-0482-4341-9729-AC70D767F133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAE47C47-0482-4341-9729-AC70D767F133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAE47C47-0482-4341-9729-AC70D767F133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAE47C47-0482-4341-9729-AC70D767F133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
