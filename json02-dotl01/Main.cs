@@ -34,6 +34,9 @@ class ProgTest
         // From Demo3
         ToUseILiquidizable.ToLiquidTest.ShouldUsILiquidForObjectRepresentation();
 
+        // From DemoDataRow
+        ToTestDataRow.ToDRTest.TestDataRowDrop();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }

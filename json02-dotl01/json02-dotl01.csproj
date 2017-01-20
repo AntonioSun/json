@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Demo2.cs" />
     <Compile Include="Demo3.cs" />
+    <Compile Include="DemoDataRow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
