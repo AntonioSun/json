@@ -7,6 +7,7 @@ using System;
 // Listing 6-4. Calling Namespace Members: NamespaceCall.cs
 namespace csharp_station
 {
+    using csharp_station.tutorial2;
 
     // nested namespace
     namespace tutorial
@@ -31,6 +32,9 @@ namespace csharp_station
             tutorial.myExample1.myPrint1();
             tutorial.myExample2.myPrint2();
 
+            // Directly Call the using namespace member
+            myExample.myPrint(); 
+
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
         }
@@ -49,3 +53,15 @@ namespace csharp_station.tutorial
     }
 }
 
+// Listing 6-5. The using Directive: UsingDirective.cs
+// C# Station Tutorial Namespace
+namespace csharp_station.tutorial2
+{
+    class myExample
+    {
+        public static void myPrint()
+        {
+            Console.WriteLine("Example of using a using directive.");
+        }
+    }
+}
