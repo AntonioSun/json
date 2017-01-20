@@ -28,8 +28,11 @@ class ProgTest
         Template.RegisterSafeType(typeof(Demo1.ExampleViewModel), Hash.FromAnonymousObject);
         Demo1.DemoCustomObject();
 
-        // 
+        // From Demo2
         ToUseDL.ToTest.TestIt();
+
+        // From Demo3
+        ToUseILiquidizable.ToLiquidTest.ShouldUsILiquidForObjectRepresentation();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
