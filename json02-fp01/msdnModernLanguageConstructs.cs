@@ -1,3 +1,10 @@
+////////////////////////////////////////////////////////////////////////////
+// Porgram: 
+// Purpose: C# Demo
+// authors: Antonio Sun (c) 2017, All rights reserved
+// Credits: as credited below
+////////////////////////////////////////////////////////////////////////////
+
 ﻿// C# Delegates, Actions, Funcs, Lambdas
 // https://blogs.msdn.microsoft.com/brunoterkaly/2012/03/02/c-delegates-actions-funcs-lambdaskeeping-it-super-simple/
 // By Bruno Terkaly bterkaly@microsoft.com
