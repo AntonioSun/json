@@ -17,7 +17,7 @@ class ProgTest
 {
     static void Main(string[] args)
     {
-        Demo0.Test();
+        Demo1.Demo.Test();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
