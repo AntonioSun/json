@@ -18,6 +18,12 @@ class ProgTest
 
         AnonymousMethod.TestDelegate.Test();
 
+        ModernLanguageConstructs.Program1.Test();
+        ModernLanguageConstructs.Program2.Test();
+        ModernLanguageConstructs.Program3.Test();
+        ModernLanguageConstructs.Program4.Test();
+        ModernLanguageConstructs.Program5.Test();
+
         Console.WriteLine("\nPress any key to exit.");
         Console.ReadKey();
     }

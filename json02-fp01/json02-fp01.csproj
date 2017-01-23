@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="msdnModernLanguageConstructs.cs" />
     <Compile Include="tp03AnonymousMethod.cs" />
     <Compile Include="tp01DelegateAppl.cs" />
     <Compile Include="tp02GenericApplication.cs" />
