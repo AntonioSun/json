@@ -12,15 +12,15 @@ using Newtonsoft.Json;
 using DotLiquid;
 
 
-namespace DL_Demo1
+namespace DL_Demo2
 {
 
-    public class Owner : DotLiquid.Drop
+    public class Owner
     {
         public string login { get; set; }
     }
 
-    public class Item : DotLiquid.Drop
+    public class Item
     {
         public string name { get; set; }
         public string full_name { get; set; }
@@ -34,7 +34,7 @@ namespace DL_Demo1
         public double score { get; set; }
     }
 
-    public class Repos : DotLiquid.Drop
+    public class Repos
     {
         public int total_count { get; set; }
         public List<Item> items { get; set; }
@@ -53,10 +53,15 @@ namespace DL_Demo1
 {% endfor -%}
   </ul>";
 
+            Template.RegisterSafeType(typeof(Repos), Hash.FromAnonymousObject);
+            // MUST Register the following as SafeType as well! 
+            Template.RegisterSafeType(typeof(Item), Hash.FromAnonymousObject);
+            Template.RegisterSafeType(typeof(Owner), Hash.FromAnonymousObject);
+
             var repos = JsonConvert.DeserializeObject<Repos>(Demo1.Demo.json);
             var template = DotLiquid.Template.Parse(myTemplate);
             var MessageBody = template.Render(DotLiquid.Hash.FromAnonymousObject(new { repos = repos }));
-            Console.WriteLine("\n## DotLiquid Demo1");
+            Console.WriteLine("\n## DotLiquid Demo2");
             Console.WriteLine(MessageBody);
         }
     }
