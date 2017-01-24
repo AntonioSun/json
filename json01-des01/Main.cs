@@ -36,6 +36,10 @@ class ProgTest
         // From Dynamic
         DynamicDemo.DynamicTest();
 
+        // From DataTable
+        DataTableCode.TestClass.Test();
+        DataTableDemo.Test();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }
