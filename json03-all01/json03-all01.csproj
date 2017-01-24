@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="dotlDemo1.cs" />
     <Compile Include="dotlDemo2.cs" />
+    <Compile Include="dotlDemo3.cs" />
     <Compile Include="JsonTest1.cs" />
     <Compile Include="JsonTest2.cs" />
     <Compile Include="Main.cs" />
