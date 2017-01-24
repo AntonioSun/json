@@ -68,6 +68,15 @@ namespace DL_Demo2
             Console.WriteLine(MessageBody);
         }
 
+        // ## Define a Filter
+        public class DotliquidCustomFilter
+        {
+            public static string OwnerToJSON(Owner ii)
+            {
+                return JsonConvert.SerializeObject(ii);
+            }
+        }
+
         public static void Test2()
         {
             string myTemplate = @"
@@ -77,16 +86,20 @@ namespace DL_Demo2
     {
 {% for item in repos.items -%}
       ""P"": {{item.full_name}},
-      ""O"": {{ item.owner.login | upcase }}
+      ""O"": {{ item.owner | OwnerToJSON }}
     },
 {% endfor -%}
   ]
 }";
+            // Register Filter to DotLiquid
+            Template.RegisterFilter(typeof(DotliquidCustomFilter));
+
             var repos = JsonConvert.DeserializeObject<Repos>(Demo1.Demo.json);
             var template = DotLiquid.Template.Parse(myTemplate);
             var MessageBody = template.Render(DotLiquid.Hash.FromAnonymousObject(new { repos = repos }));
             Console.WriteLine("\n## DotLiquid Demo2.2");
             Console.WriteLine(MessageBody);
+            Console.WriteLine(JsonConvert.SerializeObject(repos.items[0].owner));
         }
 
     }
