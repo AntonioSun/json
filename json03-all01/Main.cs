@@ -18,7 +18,10 @@ class ProgTest
         Demo2.Demo.Test();
 
         DL_Demo1.ToTest.Test();
-        DL_Demo2.ToTest.Test();
+
+        DL_Demo2.ToTest.Init();
+        DL_Demo2.ToTest.Test1();
+        DL_Demo2.ToTest.Test2();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();

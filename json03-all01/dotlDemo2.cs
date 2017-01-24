@@ -18,6 +18,7 @@ namespace DL_Demo2
     public class Owner
     {
         public string login { get; set; }
+        public string type { get; set; }
     }
 
     public class Item
@@ -43,7 +44,15 @@ namespace DL_Demo2
 
     public class ToTest
     {
-        public static void Test()
+        public static void Init()
+        {
+            Template.RegisterSafeType(typeof(Repos), Hash.FromAnonymousObject);
+            // MUST Register the following as SafeType as well! 
+            Template.RegisterSafeType(typeof(Item), Hash.FromAnonymousObject);
+            Template.RegisterSafeType(typeof(Owner), Hash.FromAnonymousObject);
+        }
+
+        public static void Test1()
         {
             string myTemplate = @"
 <p>{{ repos.total_count }} entries:</p>
@@ -52,17 +61,33 @@ namespace DL_Demo2
     <li>{{ item.owner.login | upcase }}, {{item.name}}, {{item.full_name}}</li>
 {% endfor -%}
   </ul>";
-
-            Template.RegisterSafeType(typeof(Repos), Hash.FromAnonymousObject);
-            // MUST Register the following as SafeType as well! 
-            Template.RegisterSafeType(typeof(Item), Hash.FromAnonymousObject);
-            Template.RegisterSafeType(typeof(Owner), Hash.FromAnonymousObject);
-
             var repos = JsonConvert.DeserializeObject<Repos>(Demo1.Demo.json);
             var template = DotLiquid.Template.Parse(myTemplate);
             var MessageBody = template.Render(DotLiquid.Hash.FromAnonymousObject(new { repos = repos }));
-            Console.WriteLine("\n## DotLiquid Demo2");
+            Console.WriteLine("\n## DotLiquid Demo2.1");
             Console.WriteLine(MessageBody);
         }
+
+        public static void Test2()
+        {
+            string myTemplate = @"
+{
+  ""total"": {{repos.total_count}},
+  ""items"": [
+    {
+{% for item in repos.items -%}
+      ""P"": {{item.full_name}},
+      ""O"": {{ item.owner.login | upcase }}
+    },
+{% endfor -%}
+  ]
+}";
+            var repos = JsonConvert.DeserializeObject<Repos>(Demo1.Demo.json);
+            var template = DotLiquid.Template.Parse(myTemplate);
+            var MessageBody = template.Render(DotLiquid.Hash.FromAnonymousObject(new { repos = repos }));
+            Console.WriteLine("\n## DotLiquid Demo2.2");
+            Console.WriteLine(MessageBody);
+        }
+
     }
 }
