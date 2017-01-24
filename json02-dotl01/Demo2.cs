@@ -16,9 +16,17 @@ using DotLiquid;
 namespace ToUseDL
 {
 
+    public class Info : DotLiquid.Drop
+    {
+        public string login { get; set; }
+        public string type { get; set; }
+    }
+
     public class User : DotLiquid.Drop
     {
         public string Name { get; set; }
+        public Info info { get; set; }
+
         public List<Task> Tasks { get; set; }
     }
 

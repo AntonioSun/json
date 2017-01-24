@@ -86,7 +86,7 @@ namespace DL_Demo2
     {
 {% for item in repos.items -%}
       ""P"": {{item.full_name}},
-      ""O"": {{ item | OwnerToJSON }}
+      ""O"": {{ item.owner | OwnerToJSON }}
     },
 {% endfor -%}
   ]
