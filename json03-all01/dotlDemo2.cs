@@ -71,9 +71,9 @@ namespace DL_Demo2
         // ## Define a Filter
         public class DotliquidCustomFilter
         {
-            public static string OwnerToJSON(Owner ii)
+            public static string OwnerToJSON(Item ii)
             {
-                return JsonConvert.SerializeObject(ii);
+                return JsonConvert.SerializeObject(ii.owner);
             }
         }
 
@@ -86,7 +86,7 @@ namespace DL_Demo2
     {
 {% for item in repos.items -%}
       ""P"": {{item.full_name}},
-      ""O"": {{ item.owner | OwnerToJSON }}
+      ""O"": {{ item | OwnerToJSON }}
     },
 {% endfor -%}
   ]
