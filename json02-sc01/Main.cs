@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿////////////////////////////////////////////////////////////////////////////
+// Porgram: Scriban Demo
+// Purpose: C# Demo
+// authors: Antonio Sun (c) 2017, All rights reserved
+// Credits: as credited below
+////////////////////////////////////////////////////////////////////////////
+
+using System;
 
 class ProgTest
 {
