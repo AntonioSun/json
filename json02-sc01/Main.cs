@@ -16,6 +16,9 @@ class ProgTest
         Demo1.Program.Test200statements();
         Demo1.Program.Test400builtins();
 
+        Demo2.Program.Test1();
+        Demo2.Program.Test2();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }
