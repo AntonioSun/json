@@ -74,7 +74,31 @@ js[1].Specs.Storage
 }}
 ");
                 var result = template.Render(new { text = "Hello" });
-                Console.WriteLine("\n## Test2, json objects");
+                Console.WriteLine("\n## Test2-1, json objects");
+                Console.WriteLine(result);
+            }
+            {
+                string json = @"[
+  {
+    ""Brand"": ""Nokia"",""Type"" : ""Lumia 800"",
+    ""Specs"":{""Storage"" : ""16GB"", ""Memory"": ""512MB"",""Screensize"" : ""3.7""}
+  },
+  { ""Brand"": ""HTC "",""Type"" : ""Radar"",
+    ""Specs"":{""Storage"" : ""8GB"", ""Memory"": ""512MB"",""Screensize"" : ""3.8"" }
+  }
+        ]";
+                var template = Template.Parse(@"
+{{
+js = " + json + @"
+js
+""\n""
+js[1].Brand
+""\n""
+js[0].Specs.Storage
+}}
+");
+                var result = template.Render(new { text = "Hello" });
+                Console.WriteLine("\n## Test2-2, json objects");
                 Console.WriteLine(result);
             }
         }
