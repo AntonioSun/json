@@ -9,6 +9,7 @@
 using System.Collections.Generic;
 
 using System.Data;
+using System.Data.SqlClient;
 
 using Newtonsoft.Json;
 //using Newtonsoft.Json.Linq; // for JObject
@@ -114,9 +115,10 @@ namespace Demo1
              dataTable.Rows.Add(dataRow);
 
              string json = JsonConvert.SerializeObject(dataTable);
-             Console.WriteLine(json);
+             Console.WriteLine("Json: "+ json);
 
-             string myTemplate = @"
+             {
+                 string myTemplate = @"
                 {{
                 tb = " + json + @"
                 }}
@@ -125,11 +127,105 @@ namespace Demo1
     ""N"": {{tbr.Column1}},
     ""M"": {{tbr.Column2}}
   }{{if for.last; ; else; "",""; end}}{{end}}
-]";
+]
+{{tb}}
+";
 
-             var template = Template.Parse(myTemplate);
-             var result = template.Render();
-             Console.WriteLine(result);
+                 var template = Template.Parse(myTemplate);
+                 var result = template.Render();
+                 Console.WriteLine(result);
+             }
+             {
+                 var parsed = JsonConvert.DeserializeObject(json);
+                 Console.WriteLine("Parsed: "+ parsed);
+
+                 string myTemplate = @"
+[
+  { {{ for tbr in tb }}
+    ""N"": {{tbr.Column1}},
+    ""M"": {{tbr.Column2}}
+  }{{if for.last; ; else; "",""; end}}{{end}}
+]
+{{tb}}
+";
+
+                 var template = Template.Parse(myTemplate);
+                 var result = template.Render(new { tb = parsed });
+                 Console.WriteLine(result);
+             }
+         }
+
+         /// ////////////////////////////////////////////////////////////////////////////
+         public static string GetJsonTable()
+         {
+             DataTable dataTable = GetDataTable("SELECT top 5 name, recovery_model_desc FROM sys.databases order by name",
+                 "Data Source=(local);Initial Catalog=master;Integrated Security=True");
+             return JsonConvert.SerializeObject(dataTable, Formatting.Indented);
+         }
+
+         public static DataTable GetDataTable(string _SqlCommand, string _ConnectionStr)
+         {
+             DataTable dataTable = new DataTable();
+
+             using (SqlConnection connection = new SqlConnection(_ConnectionStr))
+             using (SqlCommand cmd = connection.CreateCommand())
+             {
+                 connection.Open();
+                 cmd.CommandText = _SqlCommand;
+                 //cmd.CommandType = CommandType.StoredProcedure;
+                 //cmd.Parameters.AddWithValue("@City", txtCity.Text);
+
+                 using (SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                 {
+                     dataTable.Load(dr);
+                 }
+             }
+             return dataTable;
+         }
+         public static void TestD()
+         {
+             Console.WriteLine("\n## TestD, DataTable from DB");
+
+             string json = GetJsonTable();
+             Console.WriteLine(json);
+             var parsed = JsonConvert.DeserializeObject(json);
+             Console.WriteLine(parsed);
+
+             {
+                 string myTemplate = @"
+{{tb}}
+[
+  { {{ for tbr in tb }}
+    ""N"": {{tbr.name}},
+    ""M"": {{tbr.recovery_model_desc}}
+  }{{if for.last; ; else; "",""; end}}{{end}}
+]
+";
+                 //Template.RegisterSafeType(typeof(JObject), Hash.FromAnonymousObject);
+
+                 var template = Template.Parse(myTemplate);
+                 var result = template.Render(new { tb = parsed });
+                 Console.WriteLine(result);
+             }
+             {
+                 string myTemplate = @"
+                {{
+                tb = " + json + @"
+                }}
+{{tb}}
+[
+  { {{ for tbr in tb }}
+    ""N"": {{tbr.name}},
+    ""M"": {{tbr.recovery_model_desc}}
+  }{{if for.last; ; else; "",""; end}}{{end}}
+]
+";
+                 //Template.RegisterSafeType(typeof(JObject), Hash.FromAnonymousObject);
+
+                 var template = Template.Parse(myTemplate);
+                 var result = template.Render();
+                 Console.WriteLine(result);
+             }
          }
 
         /// ////////////////////////////////////////////////////////////////////////////
