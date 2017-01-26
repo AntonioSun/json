@@ -59,4 +59,17 @@ public class JsonDemo
          Console.WriteLine(deserialized[1].Specs.Storage);
          //Console.ReadKey();
     }
+    public static void JsonDemo2()
+    {
+        string json = @"[{Brand: Nokia, Type: Lumia 800, Specs: {Storage: 16GB, Memory: 512MB, Screensize: 3.7}}, {Brand: Nokia, Type: Lumia 900, Specs: {Storage: 8GB, Memory: 512MB, Screensize: 4.3}}, {Brand: HTC , Type: Titan II, Specs: {Storage: 16GB, Memory: 512MB, Screensize: 4.7}}]";
+        // Not working, will cause exception for the next line. 
+
+        var deserialized =
+            JsonConvert.DeserializeObject<List<Phone>>(json);
+        Console.WriteLine("\n## Deserialize Phone List 2");
+        Console.WriteLine(JsonConvert.SerializeObject(deserialized, Formatting.Indented));
+        Console.WriteLine(deserialized[0].Brand);
+        Console.WriteLine(deserialized[1].Specs.Storage);
+        Console.ReadKey();
+    }
 }
