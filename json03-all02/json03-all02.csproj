@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="a2Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scjDemo1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
