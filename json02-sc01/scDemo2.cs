@@ -9,6 +9,7 @@
 using System.Collections.Generic;
 
 using Scriban;
+using Scriban.Runtime; // ScriptObject() & Import()
 
 namespace Demo2
 {
@@ -16,11 +17,12 @@ namespace Demo2
     {
 
         /// ////////////////////////////////////////////////////////////////////////////
+        /// https://github.com/lunet-io/scriban/issues/10
         public static void Test1()
         {
             var template = Template.Parse(@"This is a \n{{ text; text + ""\n"" + text }} World {{""\n""}}from scriban!");
             var result = template.Render(new { text = "Hello" });
-            Console.WriteLine("\n## Test1");
+            Console.WriteLine("\n## Test1, Hello World with new line output");
             Console.WriteLine(result);
             ;
         }
@@ -72,7 +74,30 @@ js[1].Specs.Storage
 }}
 ");
                 var result = template.Render(new { text = "Hello" });
-                Console.WriteLine("\n## TestHelloWorld");
+                Console.WriteLine("\n## Test2, json objects");
+                Console.WriteLine(result);
+            }
+        }
+
+        /// ////////////////////////////////////////////////////////////////////////////
+        /// https://github.com/lunet-io/scriban/issues/9
+        public static void Test3()
+        {
+            {
+                var template = Template.Parse(@"This is {{ text }},{{""\n""}} and {{myfunction}} from scriban!");
+                var model = new { text = "Hello Text" };
+                var scriptObject = new ScriptObject();
+                scriptObject.Import(model);
+                // Import the following delegate to scriptObject.myfunction (would be accessible as a global function)
+                scriptObject.Import("myfunction", new Func<string>(() => "Hello Func"));
+
+                var context = new TemplateContext();
+                context.PushGlobal(scriptObject);
+                template.Render(context);
+                context.PopGlobal();
+
+                var result = context.Output.ToString();
+                Console.WriteLine("\n## Test3, Customized functions");
                 Console.WriteLine(result);
             }
         }

@@ -18,6 +18,7 @@ class ProgTest
 
         Demo2.Program.Test1();
         Demo2.Program.Test2();
+        Demo2.Program.Test3();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
