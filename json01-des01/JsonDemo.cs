@@ -55,5 +55,8 @@ public class JsonDemo
             JsonConvert.DeserializeObject<List<Phone>>(json);
          Console.WriteLine("\n## Deserialize Phone List");
          Console.WriteLine(JsonConvert.SerializeObject(deserialized, Formatting.Indented));
-	}
+         Console.WriteLine(deserialized[0].Brand);
+         Console.WriteLine(deserialized[1].Specs.Storage);
+         //Console.ReadKey();
+    }
 }

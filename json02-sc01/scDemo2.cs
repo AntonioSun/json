@@ -18,7 +18,7 @@ namespace Demo2
         /// ////////////////////////////////////////////////////////////////////////////
         public static void Test1()
         {
-            var template = Template.Parse(@"This is a \n{{ text }} World \nfrom scriban!");
+            var template = Template.Parse(@"This is a \n{{ text; text + ""\n"" + text }} World {{""\n""}}from scriban!");
             var result = template.Render(new { text = "Hello" });
             Console.WriteLine("\n## Test1");
             Console.WriteLine(result);
@@ -41,6 +41,7 @@ x.z              # x.z should print 10
 x = { z: 10 }    # x is initialized
 x.y              # x.y will work
 x.z              # x.z should print 10
+""\n""
 x
 }}
 ");
@@ -62,15 +63,12 @@ x
         ]";
                 var template = Template.Parse(@"
 {{
-x = { z: 10 }    # x is initialized
-x.y              # x.y will work
-x.z              # x.z should print 10
-
-x
-
 js = " + json + @"
 js
-
+""\n""
+js[0].Brand
+""\n""
+js[1].Specs.Storage
 }}
 ");
                 var result = template.Render(new { text = "Hello" });
