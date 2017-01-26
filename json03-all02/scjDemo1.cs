@@ -8,7 +8,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using System.Data;
+
 using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq; // for JObject
 
 using Scriban;
 using Scriban.Runtime; // ScriptObject() & Import()
@@ -61,7 +64,7 @@ namespace Demo1
                 }");
             var repos = JsonConvert.DeserializeObject<Repos>(json);
             var result = template.Render(new { repos = repos });
-            Console.WriteLine("\n## TestA");
+            Console.WriteLine("\n## TestA, json var");
             Console.WriteLine(result);
             ;
         }
@@ -69,7 +72,7 @@ namespace Demo1
         /// ////////////////////////////////////////////////////////////////////////////
          public static void TestB()
         {
-            Console.WriteLine("\n## TestB");
+            Console.WriteLine("\n## TestB, json obj");
 
             var repos = JsonConvert.DeserializeObject<Repos>(json);
             string repoStr = JsonConvert.SerializeObject(repos);
@@ -94,8 +97,39 @@ namespace Demo1
         }
          public static void TestC()
          {
-             Console.WriteLine("\n## TestC");
+             Console.WriteLine("\n## TestC, DataTable");
 
+             System.Data.DataTable dataTable = new System.Data.DataTable();
+             dataTable.Columns.Add("Column1");
+             dataTable.Columns.Add("Column2");
+
+             System.Data.DataRow dataRow = dataTable.NewRow();
+             dataRow["Column1"] = "Hello";
+             dataRow["Column2"] = "World";
+             dataTable.Rows.Add(dataRow);
+
+             dataRow = dataTable.NewRow();
+             dataRow["Column1"] = "Bonjour";
+             dataRow["Column2"] = "le monde";
+             dataTable.Rows.Add(dataRow);
+
+             string json = JsonConvert.SerializeObject(dataTable);
+             Console.WriteLine(json);
+
+             string myTemplate = @"
+                {{
+                tb = " + json + @"
+                }}
+[
+  { {{ for tbr in tb }}
+    ""N"": {{tbr.Column1}},
+    ""M"": {{tbr.Column2}}
+  }{{if for.last; ; else; "",""; end}}{{end}}
+]";
+
+             var template = Template.Parse(myTemplate);
+             var result = template.Render();
+             Console.WriteLine(result);
          }
 
         /// ////////////////////////////////////////////////////////////////////////////

@@ -10,6 +10,7 @@ class ProgTest
     {
         Demo1.Program.TestA();
         Demo1.Program.TestB();
+        Demo1.Program.TestC();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
