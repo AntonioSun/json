@@ -49,10 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo2.cs" />
-    <Compile Include="Demo3.cs" />
-    <Compile Include="DemoDataRow.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="dlDemo2.cs" />
+    <Compile Include="dlDemo3.cs" />
+    <Compile Include="dlDemoDataRow.cs" />
+    <Compile Include="dlMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
