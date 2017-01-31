@@ -50,7 +50,7 @@ namespace Demo1
     {
         /// ////////////////////////////////////////////////////////////////////////////
         /// https://github.com/lunet-io/scriban/blob/master/doc/language.md
-        public static void TestA()
+        public static void Test1A()
         {
             var template = Template.Parse(@"{
                     ""total"": {{repos.total_count}},
@@ -65,15 +65,15 @@ namespace Demo1
                 }");
             var repos = JsonConvert.DeserializeObject<Repos>(json);
             var result = template.Render(new { repos = repos });
-            Console.WriteLine("\n## TestA, json var");
+            Console.WriteLine("\n## Test1A, json var");
             Console.WriteLine(result);
             ;
         }
 
         /// ////////////////////////////////////////////////////////////////////////////
-         public static void TestB()
+         public static void Test1B()
         {
-            Console.WriteLine("\n## TestB, json obj");
+            Console.WriteLine("\n## Test1B, json obj");
 
             var repos = JsonConvert.DeserializeObject<Repos>(json);
             string repoStr = JsonConvert.SerializeObject(repos);
@@ -95,8 +95,30 @@ namespace Demo1
                 }");
             var result = template.Render();
             Console.WriteLine(result);
+            //Console.ReadKey();
         }
-         public static void TestC()
+
+         public static void Test2A()
+         {
+             var template = Template.Parse(@"{
+                    ""total"": {{repos.total_count}},
+                    ""items"": [
+                    {
+                {{ for item in repos.items }}
+                        ""P"": {{item.full_name}},
+                        ""O"": {{ item.owner.login | string.capitalize }}
+                    },
+                {{end}}
+                    ]
+                }");
+             var repos = JsonConvert.DeserializeObject<Repos>(json);
+             var result = template.Render(new { repos = repos });
+             Console.WriteLine("\n## Test2A, json var");
+             Console.WriteLine(result);
+             Console.ReadKey();
+         }
+
+         public static void TestDataTable()
          {
              Console.WriteLine("\n## TestC, DataTable");
 
@@ -182,7 +204,7 @@ namespace Demo1
              }
              return dataTable;
          }
-         public static void TestD()
+         public static void TestDBTable()
          {
              Console.WriteLine("\n## TestD, DataTable from DB");
 

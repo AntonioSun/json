@@ -8,10 +8,10 @@ class ProgTest
 {
     static void Main(string[] args)
     {
-        Demo1.Program.TestA();
-        Demo1.Program.TestB();
-        Demo1.Program.TestC();
-        Demo1.Program.TestD();
+        Demo1.Program.Test1A();
+        Demo1.Program.Test1B();
+        Demo1.Program.TestDataTable();
+        Demo1.Program.TestDBTable();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
