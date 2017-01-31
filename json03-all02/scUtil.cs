@@ -58,9 +58,6 @@ namespace Util
         /// ////////////////////////////////////////////////////////////////////////////
         public static void Test1()
         {
-            Init();
-            // Import the following delegate to scriptObject.myfunction1 (would be accessible as a global function)
-            Reg("myfunction1", new Func<string>(() => "Hello Func"));
 
             var template = Template.Parse(@"This is {{ text }},{{""\n""}} and {{myfunction1}} from scriban!");
             var model = new { text = "Hello Text" };

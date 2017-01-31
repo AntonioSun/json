@@ -17,6 +17,8 @@ using Newtonsoft.Json;
 using Scriban;
 using Scriban.Runtime; // ScriptObject() & Import()
 
+//using Util.Scriban;
+
 namespace Demo1
 {
 
@@ -98,8 +100,16 @@ namespace Demo1
             //Console.ReadKey();
         }
 
+         public static string OwnerToJSON(Item ii)
+         {
+             return JsonConvert.SerializeObject(ii.owner);
+         }
+
+
          public static void Test2A()
          {
+             var repos = JsonConvert.DeserializeObject<Repos>(json);
+
              var template = Template.Parse(@"{
                     ""total"": {{repos.total_count}},
                     ""items"": [
@@ -111,9 +121,16 @@ namespace Demo1
                 {{end}}
                     ]
                 }");
-             var repos = JsonConvert.DeserializeObject<Repos>(json);
-             var result = template.Render(new { repos = repos });
-             Console.WriteLine("\n## Test2A, json var");
+             var model = new { repos = repos };
+             Util.Scriban.scriptObject.Import(model);
+
+             Util.Scriban.context.PushGlobal(Util.Scriban.scriptObject);
+             template.Render(Util.Scriban.context);
+             Util.Scriban.context.PopGlobal();
+
+             var result = Util.Scriban.context.Output.ToString();
+
+             Console.WriteLine("\n## Test2A, json var, NOK");
              Console.WriteLine(result);
              Console.ReadKey();
          }
