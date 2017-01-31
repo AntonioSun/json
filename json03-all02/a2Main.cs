@@ -13,6 +13,9 @@ class ProgTest
         Demo1.Program.TestDataTable();
         Demo1.Program.TestDBTable();
 
+        Util.Scriban.Test0();
+        Util.Scriban.Test1();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
 
