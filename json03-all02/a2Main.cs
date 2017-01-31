@@ -16,11 +16,11 @@ class ProgTest
 
         Util.Scriban.Test0();
 
-        //Util.Scriban.Init();
-        //Util.Scriban.Reg("myfunction1", new Func<string>(() => "Hello Func"));
-        //Util.Scriban.Test1();
-        //Demo1.Program.Test2A();
-        
+        Util.Scriban.Init();
+        Util.Scriban.Reg("myfunction1", new Func<string>(() => "Hello Func"));
+        Util.Scriban.Test1A();
+        Util.Scriban.Test1B();
+
         Util.Scriban.Test2();
 
         Console.WriteLine("Press any key to exit.");

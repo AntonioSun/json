@@ -122,13 +122,13 @@ namespace Demo1
                     ]
                 }");
              var model = new { repos = repos };
-             Util.Scriban.scriptObject.Import(model);
+             Util.Scriban.globalFunctions.Import(model);
 
-             Util.Scriban.context.PushGlobal(Util.Scriban.scriptObject);
-             template.Render(Util.Scriban.context);
-             Util.Scriban.context.PopGlobal();
+             Util.Scriban.globalContext.PushGlobal(Util.Scriban.globalFunctions);
+             template.Render(Util.Scriban.globalContext);
+             Util.Scriban.globalContext.PopGlobal();
 
-             var result = Util.Scriban.context.Output.ToString();
+             var result = Util.Scriban.globalContext.Output.ToString();
 
              Console.WriteLine("\n## Test2A, json var, NOK");
              Console.WriteLine(result);
