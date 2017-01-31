@@ -71,5 +71,29 @@ namespace Util
             Console.WriteLine("\n## Test1, Customized function 1");
             Console.WriteLine(result);
         }
+
+        public static string RunWith(Template template, object model, string funcName, Delegate funcDef)
+        {
+            var scriptObject = new ScriptObject();
+            scriptObject.Import(model);
+            // Import the following delegate to scriptObject (would be accessible as a global function)
+            scriptObject.Import(funcName, funcDef);
+
+            var context = new TemplateContext();
+            context.PushGlobal(scriptObject);
+            template.Render(context);
+            context.PopGlobal();
+
+            return context.Output.ToString();
+        }
+
+        public static void Test2()
+        {
+            var result = RunWith(Template.Parse(@"This is {{ text }},{{""\n""}} and {{myfunction2}} from scriban!"),
+                new { text = "Hello Text" }, "myfunction2", new Func<string>(() => "Hello Func"));
+            Console.WriteLine("\n## Test2, Customized function 2");
+            Console.WriteLine(result);
+        }
+
     }
 }

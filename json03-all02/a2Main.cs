@@ -16,12 +16,12 @@ class ProgTest
 
         Util.Scriban.Test0();
 
-        Util.Scriban.Init();
-        // Import the following delegate to scriptObject.myfunction1 (would be accessible as a global function)
-        Util.Scriban.Reg("myfunction1", new Func<string>(() => "Hello Func"));
-        Util.Scriban.Test1();
-
-        Demo1.Program.Test2A();
+        //Util.Scriban.Init();
+        //Util.Scriban.Reg("myfunction1", new Func<string>(() => "Hello Func"));
+        //Util.Scriban.Test1();
+        //Demo1.Program.Test2A();
+        
+        Util.Scriban.Test2();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
