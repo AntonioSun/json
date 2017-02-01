@@ -119,6 +119,40 @@ mystr:
             Console.WriteLine(result);
         }
 
+        /// ////////////////////////////////////////////////////////////////////////////
+        public static void Test2()
+        {
+
+            Author a1 = new Author { Name = "John" };
+            // http://www.functionx.com/csharp/arrays/Lesson03.htm
+            Book[] b = new Book[2];
+            b[0] = new Book();
+            b[0].Title="Book1";
+            b[0].Author = a1;
+            b[1] = new Book();
+            b[1].Title = "Book2";
+            b[1].Author = a1;
+
+            var globalFunction = new ScriptObject();
+            // registerMyGlobalFunctions(globalFunction);
+            StringFunctions.Register(globalFunction);
+
+            var template = Template.Parse(@"This {{books[0].Title}} {{ ""is"" | mystr.upcase }} from scriban!");
+            var model = new { books = b };
+            var context = new TemplateContext();
+            context.PushGlobal(globalFunction);
+
+            var localFunction = new ScriptObject();
+            localFunction.Import(model);
+            context.PushGlobal(localFunction);
+
+            template.Render(context);
+            context.PopGlobal();
+
+            var result = context.Output.ToString();
+            Console.WriteLine("\n## Test3-1, Customized functions");
+            Console.WriteLine(result);
+        }
 
         /// ////////////////////////////////////////////////////////////////////////////
     }
