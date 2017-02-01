@@ -52,6 +52,20 @@ namespace Demo3
         }
     }
 
+    /// ////////////////////////////////////////////////////////////////////////////
+    // Class definition.
+    public class Author
+    {
+        public string Name { get; set; }
+    }
+
+    public class Book 
+    {
+        public string Title { get; set; }
+        public Author Author { get; set; }
+    }
+
+
     class Program
     {
 

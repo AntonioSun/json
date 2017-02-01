@@ -69,7 +69,7 @@ json:
                     },
                 {{end}}
                     ]
-                }");
+                }"); //                         ""O"": {{ item | json.ownertojson }}
             var model = new { repos = repos };
             var context = new TemplateContext();
             context.PushGlobal(Util.Scriban.globalFunctions);

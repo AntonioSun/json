@@ -47,7 +47,7 @@ namespace Util
         /// https://github.com/lunet-io/scriban/issues/9
         public static void Test0()
         {
-            var template = Template.Parse(@"This {{ ""is"" | string.upcase }} {{ text | string.capitalize }} ({{ text }}),{{""\n""}} and {{myfunction}} from scriban!");
+            var template = Template.Parse(@"This {{ ""is"" | string.upcase }} {{ text | string.downcase | string.handleize }} ({{ text }}),{{""\n""}} and {{myfunction | string.upcase}} from scriban!");
             var model = new { text = "Hello Text" };
             var scriptObject = new ScriptObject();
             scriptObject.Import(model);
