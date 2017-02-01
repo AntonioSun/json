@@ -22,7 +22,7 @@ namespace Demo2
         {
             var template = Template.Parse(@"This is a \n{{ text; text + ""\n"" + text }} World {{""\n""}}from scriban!");
             var result = template.Render(new { text = "Hello" });
-            Console.WriteLine("\n## Test1, Hello World with new line output");
+            Console.WriteLine("\n## Test2-1, Hello World with new line output");
             Console.WriteLine(result);
             ;
         }
@@ -74,7 +74,7 @@ js[1].Specs.Storage
 }}
 ");
                 var result = template.Render(new { text = "Hello" });
-                Console.WriteLine("\n## Test2-1, json objects");
+                Console.WriteLine("\n## Test2-2-1, json objects");
                 Console.WriteLine(result);
             }
             {
@@ -98,7 +98,7 @@ js[0].Specs.Storage
 }}
 ");
                 var result = template.Render(new { text = "Hello" });
-                Console.WriteLine("\n## Test2-2, json objects");
+                Console.WriteLine("\n## Test2-2-2, json objects");
                 Console.WriteLine(result);
             }
         }
@@ -121,7 +121,7 @@ js[0].Specs.Storage
                 context.PopGlobal();
 
                 var result = context.Output.ToString();
-                Console.WriteLine("\n## Test3, Customized functions");
+                Console.WriteLine("\n## Test2-3, Customized functions");
                 Console.WriteLine(result);
             }
         }

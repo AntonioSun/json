@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scDemo1.cs" />
     <Compile Include="scDemo2.cs" />
+    <Compile Include="scDemo3.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
