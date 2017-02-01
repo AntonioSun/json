@@ -23,6 +23,10 @@ class ProgTest
 
         Util.Scriban.Test2();
 
+        Demo2.Program.Init();
+        Demo2.Program.Test20();
+        Demo2.Program.Test2A();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
 

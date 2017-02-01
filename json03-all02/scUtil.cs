@@ -8,16 +8,40 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Newtonsoft.Json;
+
 using Scriban;
 using Scriban.Runtime; // ScriptObject() & Import()
 
 namespace Util
 {
+
+    /// <summary>
+    /// String functions available through the object 'json' in scriban.
+    /// </summary>
+    public static class JsonFunctions
+    {
+        public static string OwnerToJSON(Demo1.Item ii)
+        {
+            return JsonConvert.SerializeObject(ii.owner);
+        }
+
+        /// ////////////////////////////////////////////////////////////////////////////
+        /// https://github.com/lunet-io/scriban/issues/7
+        public static void Register(ScriptObject builtins)
+        {
+            //if (builtins == null) throw new ArgumentNullException(nameof(builtins));
+            var arrayObject = ScriptObject.From(typeof(JsonFunctions));
+
+            builtins.SetValue("json", arrayObject, true);
+        }
+    }
+
     class Scriban
     {
 
         public static TemplateContext globalContext;
-        public static IScriptObject globalFunctions;
+        public static ScriptObject globalFunctions;
 
         /// ////////////////////////////////////////////////////////////////////////////
         /// https://github.com/lunet-io/scriban/issues/9
@@ -45,6 +69,8 @@ namespace Util
         {
             globalFunctions = new ScriptObject();
             globalContext = new TemplateContext();
+
+            //JsonFunctions.Register(globalFunctions);
         }
 
 
