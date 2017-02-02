@@ -137,9 +137,11 @@ mystr:
             // registerMyGlobalFunctions(globalFunction);
             StringFunctions.Register(globalFunction);
 
-            var template = Template.Parse(@"This {{books[0].Title}} {{ ""is"" | mystr.upcase }} from scriban!");
+            var template = Template.Parse(@"This {{books[0].Title | mystr.downcase}} of {{ books[1].Author.Name | mystr.upcase }} is from scriban!");
             var model = new { books = b };
             var context = new TemplateContext();
+            // https://github.com/lunet-io/scriban/issues/14#issuecomment-276928045
+            context.MemberRenamer = new DelegateMemberRenamer(name => name);
             context.PushGlobal(globalFunction);
 
             var localFunction = new ScriptObject();

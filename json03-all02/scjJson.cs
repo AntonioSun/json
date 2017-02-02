@@ -60,7 +60,7 @@ public class JsonDemo
          Console.WriteLine(deserialized[1].Specs.Storage);
          //Console.ReadKey();
 
-         var template = Template.Parse(@"{{ phones[0].Brand }}"); // phones[1].Specs.Storage
+         var template = Template.Parse(@"{{ phones[0].Brand }} of {{phones[1].Specs.Storage}}");
          var model = new { phones = deserialized };
          var scriptObject = new ScriptObject();
          scriptObject.Import(model);
@@ -68,6 +68,8 @@ public class JsonDemo
          //scriptObject.Import("serialize", new Func<string>(() => "Hello Func"));
 
          var context = new TemplateContext();
+         // https://github.com/lunet-io/scriban/issues/14#issuecomment-276928045
+         context.MemberRenamer = new DelegateMemberRenamer(name => name);
          context.PushGlobal(scriptObject);
          template.Render(context);
          context.PopGlobal();

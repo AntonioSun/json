@@ -28,6 +28,7 @@ class ProgTest
         Demo2.Program.Test2A();
 
         // From JsonDemo
+        Console.WriteLine("\n# JsonDemo");
         JsonDemo.Test1();
 
         Console.WriteLine("Press any key to exit.");
