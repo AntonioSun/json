@@ -41,6 +41,10 @@ class ProgTest
         DataTableCode.TestClass.Test();
         DataTableDemo.Test();
 
+        // From JsonPath
+        JsonPath.Demo1();
+        JsonPath.Demo2();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
     }

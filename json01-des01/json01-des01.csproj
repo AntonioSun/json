@@ -48,6 +48,7 @@
     <Compile Include="Dynamic.cs" />
     <Compile Include="ExtraFields.cs" />
     <Compile Include="JsonDemo.cs" />
+    <Compile Include="JsonPath.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
