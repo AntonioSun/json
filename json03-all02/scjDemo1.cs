@@ -232,7 +232,7 @@ namespace Demo1
 
              {
                  string myTemplate = @"
-{{tb}}
+{{tb}} from parsed
 [
   { {{ for tbr in tb }}
     ""N"": {{tbr.name}},
@@ -251,7 +251,7 @@ namespace Demo1
                 {{
                 tb = " + json + @"
                 }}
-{{tb}}
+{{tb}} from json
 [
   { {{ for tbr in tb }}
     ""N"": {{tbr.name}},

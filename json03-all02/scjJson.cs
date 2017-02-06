@@ -60,12 +60,14 @@ public class JsonDemo
          Console.WriteLine(deserialized[1].Specs.Storage);
          //Console.ReadKey();
 
-         var template = Template.Parse(@"{{ phones[0].Brand }} of {{phones[1].Specs.Storage}}");
+         var template = Template.Parse(@"{{ phones[0].Brand }} of {{phones[1].Specs.Storage}}{{
+            ""\nserialize-all: "" + phones | serialize}}
+            ");
          var model = new { phones = deserialized };
          var scriptObject = new ScriptObject();
          scriptObject.Import(model);
-         // Import the following delegate to scriptObject.myfunction (would be accessible as a global function)
-         //scriptObject.Import("serialize", new Func<string>(() => "Hello Func"));
+         // Import the following delegate (would be accessible as a global function)
+         scriptObject.Import("serialize", new Func<Object, string>(x => JsonConvert.SerializeObject(x)));
 
          var context = new TemplateContext();
          // https://github.com/lunet-io/scriban/issues/14#issuecomment-276928045
