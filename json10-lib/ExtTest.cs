@@ -19,6 +19,19 @@ namespace Ext.Pub.Github
     /// ////////////////////////////////////////////////////////////////////////////
     // For test in C# only
 
+    /// ////////////////////////////////////////////////////////////////////////////
+    // Class definitions
+    public class Author
+    {
+        public string Name { get; set; }
+    }
+
+    public class Book
+    {
+        public string Title { get; set; }
+        public Author Author { get; set; }
+    }
+
     class Test
     {
 

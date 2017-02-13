@@ -53,19 +53,6 @@ namespace Ext.Pub.Github
         public int total_count { get; set; }
         public List<Item> items { get; set; }
     }
-
-    /// ////////////////////////////////////////////////////////////////////////////
-    // More Class definitions
-    public class Author
-    {
-        public string Name { get; set; }
-    }
-
-    public class Book
-    {
-        public string Title { get; set; }
-        public Author Author { get; set; }
-    }
 }
 
 namespace Ext.Pub.Github
