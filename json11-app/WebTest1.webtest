@@ -13,6 +13,11 @@
             <RuleParameter Name="UseGroups" Value="False" />
           </RuleParameters>
         </ExtractionRule>
+        <ExtractionRule Classname="Ext.Pub.Github.GetGhRet, json10-lib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" VariableName="Param_Short" DisplayName="Github Extract" Description="ExtractionRule for Github">
+          <RuleParameters>
+            <RuleParameter Name="theComment" Value="Collect only a selectful of returns" />
+          </RuleParameters>
+        </ExtractionRule>
       </ExtractionRules>
       <QueryStringParameters>
         <QueryStringParameter Name="q" Value="DotLiquid" RecordedValue="" CorrelationBinding="" UrlEncode="False" UseToGroupResults="False" />
