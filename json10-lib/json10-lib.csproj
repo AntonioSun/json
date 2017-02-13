@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ext.cs" />
+    <Compile Include="ExtTest.cs" />
     <Compile Include="libTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
