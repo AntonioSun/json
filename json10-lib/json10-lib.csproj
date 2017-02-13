@@ -48,12 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="a2Main.cs" />
+    <Compile Include="Ext.cs" />
+    <Compile Include="libTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="scjDemo1.cs" />
-    <Compile Include="scjDemo2.cs" />
-    <Compile Include="scjJson.cs" />
-    <Compile Include="scUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
