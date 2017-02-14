@@ -72,7 +72,7 @@
         <RequestPlugin Classname="Ext.Pub.Github.GhReq, json10-lib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DisplayName="Ext-RequestPlugin Public" Description="RequestPlugin for public services">
           <RuleParameters>
             <RuleParameter Name="theComment" Value="test" />
-            <RuleParameter Name="theTemplate" Value="{ {{myfunction}}, &quot;MyData&quot;: {{ d | serialize }} } " />
+            <RuleParameter Name="theTemplate" Value="{ {{myfunction}}, {{myfunction | ghext.upcase }}, &quot;MyData&quot;: {{ d | serialize }} } " />
             <RuleParameter Name="theModel" Value="Param_Phone" />
           </RuleParameters>
         </RequestPlugin>
