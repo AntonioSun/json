@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel; 
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq; // for JObject
 
 using Scriban;
 using Scriban.Runtime; // ScriptObject() & Import()
@@ -88,6 +89,14 @@ namespace Ext.Pub.Github
         [Description("What the plugin is for")]
         public string theComment { get; set; }
 
+        [DisplayName("Template String")]
+        [Description("The template used to populate request StringBody")]
+        public string theTemplate { get; set; }
+
+        [DisplayName("Model Name")]
+        [Description("The name of Context Parameter (holding JSON string) used as data model to drive the template")]
+        public string theModel { get; set; }
+
         public override void PostRequest(object sender, PostRequestEventArgs e)
         {
             // TODO: Add code to execute  
@@ -95,7 +104,29 @@ namespace Ext.Pub.Github
 
         public override void PreRequest(object sender, PreRequestEventArgs e)
         {
-            // TODO: Add code to execute  
+            // Init vars
+            var template = Template.Parse(theTemplate);
+            var parsed = JsonConvert.DeserializeObject<JArray>(e.WebTest.Context[theModel].ToString()); // JObject
+            var model = new { d = parsed };
+
+            // Prepare Template
+            var scriptObject = new ScriptObject();
+            scriptObject.Import(model);
+            GhExt.Register(scriptObject);
+
+            // Render from Template
+            var context = new TemplateContext();
+            context.PushGlobal(scriptObject);
+            template.Render(context);
+            context.PopGlobal();
+            string result = context.Output.ToString();
+
+            // Set Request String Body
+            var stringBody = new StringHttpBody();
+            stringBody.BodyString = result;
+            stringBody.ContentType = "application/json";
+
+            e.Request.Body = stringBody;
         }
     }
 }

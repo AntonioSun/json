@@ -13,7 +13,7 @@
             <RuleParameter Name="UseGroups" Value="False" />
           </RuleParameters>
         </ExtractionRule>
-        <ExtractionRule Classname="Ext.Pub.Github.GetGhRet, json10-lib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" VariableName="Param_Short" DisplayName="Github Extract" Description="ExtractionRule for Github">
+        <ExtractionRule Classname="Ext.Pub.Github.GetGhRet, json10-lib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" VariableName="Param_Short" DisplayName="Ext-Extract Github" Description="ExtractionRule for Github">
           <RuleParameters>
             <RuleParameter Name="theComment" Value="Collect only a selectful of returns" />
           </RuleParameters>
@@ -41,7 +41,46 @@
           </RuleParameters>
         </ExtractionRule>
       </ExtractionRules>
+      <RequestPlugins>
+        <RequestPlugin Classname="Ext.Pub.Github.GhReq, json10-lib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DisplayName="Ext-RequestPlugin Public" Description="RequestPlugin for public services">
+          <RuleParameters>
+            <RuleParameter Name="theComment" Value="test" />
+            <RuleParameter Name="theTemplate" Value="This is {{ (2 * (2+3)) }} {{&quot;\n&quot;}} {{$x = 1; $y = 2; $x + $y }} from scriban!  {{if false; &quot;Boo!&quot;; else if false; &quot;Boo2&quot;; else if null; &quot;Boo3&quot;; else; &quot;Yes&quot;; end}}  {{ for y in [1,2,3,4]; (y-1) + &quot; =&gt; [&quot; + for.index + &quot;] &quot; + for.first + &quot;,&quot; + for.last + &quot;,&quot; + for.even + &quot;,&quot; + for.odd + &quot;\n &quot;; end }}  {{[9,3,5,1] | array.sort}}  {{[1,2,3,4] | array.add 5}}  {{ &quot;This is a test with a test&quot; | string.remove 'test' }}" />
+            <RuleParameter Name="theModel" Value="Param_Phone" />
+          </RuleParameters>
+        </RequestPlugin>
+      </RequestPlugins>
+      <StringHttpBody ContentType="application/json" InsertByteOrderMark="False">ewB7AFAAYQByAGEAbQBfAFIAZQB0AH0AfQA=</StringHttpBody>
+    </Request>
+    <Request Method="POST" Guid="52711baa-0613-47a3-a985-7562aea40e96" Version="1.1" Url="https://httpbin.org/post" ThinkTime="0" Timeout="270" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Content-Type" Value="application/json" />
+      </Headers>
+      <ExtractionRules>
+        <ExtractionRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ExtractRegularExpression, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" VariableName="Param_Ret2" DisplayName="Extract Regular Expression" Description="Extract text from the response matching a regular expression and place it into the test context.">
+          <RuleParameters>
+            <RuleParameter Name="RegularExpression" Value="^.*$" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="Required" Value="True" />
+            <RuleParameter Name="Index" Value="0" />
+            <RuleParameter Name="HtmlDecode" Value="True" />
+            <RuleParameter Name="UseGroups" Value="False" />
+          </RuleParameters>
+        </ExtractionRule>
+      </ExtractionRules>
+      <RequestPlugins>
+        <RequestPlugin Classname="Ext.Pub.Github.GhReq, json10-lib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DisplayName="Ext-RequestPlugin Public" Description="RequestPlugin for public services">
+          <RuleParameters>
+            <RuleParameter Name="theComment" Value="test" />
+            <RuleParameter Name="theTemplate" Value="{ {{myfunction}}, &quot;MyData&quot;: {{ d | serialize }} } " />
+            <RuleParameter Name="theModel" Value="Param_Phone" />
+          </RuleParameters>
+        </RequestPlugin>
+      </RequestPlugins>
       <StringHttpBody ContentType="application/json" InsertByteOrderMark="False">ewB7AFAAYQByAGEAbQBfAFIAZQB0AH0AfQA=</StringHttpBody>
     </Request>
   </Items>
+  <ContextParameters>
+    <ContextParameter Name="Param_Phone" Value="[{&quot;Brand&quot;:&quot;Nokia&quot;,&quot;Type&quot;:&quot;Lumia 800&quot;,&quot;Specs&quot;:{&quot;Storage&quot;:&quot;16GB&quot;,&quot;Memory&quot;:&quot;512MB&quot;,&quot;Screensize&quot;:&quot;3.7&quot;}},{&quot;Brand&quot;:&quot;Nokia&quot;,&quot;Type&quot;:&quot;Lumia 900&quot;,&quot;Specs&quot;:{&quot;Storage&quot;:&quot;8GB&quot;,&quot;Memory&quot;:&quot;512MB&quot;,&quot;Screensize&quot;:&quot;4.3&quot;}},{&quot;Brand&quot;:&quot;HTC &quot;,&quot;Type&quot;:&quot;Titan II&quot;,&quot;Specs&quot;:{&quot;Storage&quot;:&quot;16GB&quot;,&quot;Memory&quot;:&quot;512MB&quot;,&quot;Screensize&quot;:&quot;4.7&quot;}}]" />
+  </ContextParameters>
 </WebTest>

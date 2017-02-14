@@ -89,7 +89,7 @@ namespace Ext.Pub.Github
 
             // Import the following delegate (would be accessible as a global function)
             // myfunction
-            scriptObject.Import("myfunction", new Func<string>(() => "Hello Func"));
+            scriptObject.Import("myfunction", new Func<string>(() => "\"MyFunction\": \"Hello Func\""));
             // serialize
             scriptObject.Import("serialize", new Func<Object, string>(x => JsonConvert.SerializeObject(x)));
         }
