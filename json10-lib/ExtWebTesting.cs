@@ -28,7 +28,7 @@ namespace Ext.Pub.Github
 
     /// The user sees the following in the Add Extraction Rule dialog box.
     /// Specify a name for use in the user interface.
-    [DisplayName("Github Extract")]
+    [DisplayName("Ext-Extract Github")]
     /// Specify a description for use in the user interface.
     [Description("ExtractionRule for Github")]
     public class GetGhRet : ExtractionRule
@@ -63,6 +63,39 @@ namespace Ext.Pub.Github
             if (repos == null) { return null;  }
 
             return JsonConvert.SerializeObject(repos);
+        }
+    }
+}
+
+namespace Ext.Pub.Github
+{
+    /// ////////////////////////////////////////////////////////////////////////////
+    //-------------------------------------------------------------------------
+    /// <summary>
+    /// GetGhRet: Github Extract Demo
+    // This class creates a custom ExtractionRule named "Github Extract"
+    /// </summary>
+    //-------------------------------------------------------------------------
+
+    /// The user sees the following in the Add Extraction Rule dialog box.
+    /// Specify a name for use in the user interface.
+    [DisplayName("Ext-RequestPlugin Public")]
+    /// Specify a description for use in the user interface.
+    [Description("RequestPlugin for public services")]
+    public class GhReq : WebTestRequestPlugin 
+    {
+        [DisplayName("Comment")]
+        [Description("What the plugin is for")]
+        public string theComment { get; set; }
+
+        public override void PostRequest(object sender, PostRequestEventArgs e)
+        {
+            // TODO: Add code to execute  
+        }
+
+        public override void PreRequest(object sender, PreRequestEventArgs e)
+        {
+            // TODO: Add code to execute  
         }
     }
 }
