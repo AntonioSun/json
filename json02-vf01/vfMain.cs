@@ -14,6 +14,12 @@ class ProgTest
         Shapes.Program.Test();
         NewShapes.Program.Test();
 
+        Polymorphism1.Test.Test0();
+        PolymorphismOverriding.Test.Test0();
+        PolymorphismHiding.Test.Test0();
+
+        OverridingHiding.Program.Test();
+
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
 

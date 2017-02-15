@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Polymorphism.cs" />
     <Compile Include="Shapes.cs" />
     <Compile Include="vfMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
