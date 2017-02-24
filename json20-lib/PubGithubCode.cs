@@ -48,8 +48,8 @@ namespace Ext.Pub.Github
             scriptObject.Import("myfunction", new Func<string>(() => "\"MyFunction\": \"Hello Func\""));
 
             // Register (a group of) functions available through the object 'ghext' in scriban
-            var arrayObject = ScriptObject.From(typeof(GhExt));
-            scriptObject.SetValue("pub_gh", arrayObject, true);
+            var libObject = ScriptObject.From(typeof(GhExt));
+            scriptObject.SetValue("pub_gh", libObject, true);
         }
     }
 }

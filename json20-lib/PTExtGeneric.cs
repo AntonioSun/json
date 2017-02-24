@@ -90,9 +90,10 @@ namespace Ext.Generic.Templating
             scriptObject.Import("serialize", new Func<Object, string>(x => JsonConvert.SerializeObject(x)));
 
             // Register functions available through the object 'ghext' in scriban
-            scriptObject.Import(typeof(ExtTplUtil));
-            //var arrayObject = ScriptObject.From(typeof(ExtTplUtil));
-            //scriptObject.SetValue("extjs", arrayObject, true);
+            // scriptObject.Import(typeof(ExtTplUtil)); // Register into root
+            // Register into its own namespace: ext_base
+            var libObject = ScriptObject.From(typeof(ExtTplUtil));
+            scriptObject.SetValue("ext_base", libObject, true);
         }
 
         /// <summary>
