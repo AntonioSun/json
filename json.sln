@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json20-lib", "json20-lib\js
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json21-app", "json21-app\json21-app.csproj", "{A8872934-6E67-41D7-8B4F-F846547A37D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "json01-jp01", "json01-jp01\json01-jp01.csproj", "{079886D3-2FA0-42D8-A825-03F77F5E62C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{A8872934-6E67-41D7-8B4F-F846547A37D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8872934-6E67-41D7-8B4F-F846547A37D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8872934-6E67-41D7-8B4F-F846547A37D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{079886D3-2FA0-42D8-A825-03F77F5E62C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{079886D3-2FA0-42D8-A825-03F77F5E62C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{079886D3-2FA0-42D8-A825-03F77F5E62C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{079886D3-2FA0-42D8-A825-03F77F5E62C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
