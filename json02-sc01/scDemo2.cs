@@ -44,7 +44,12 @@ x = { z: 10 }    # x is initialized
 x.y              # x.y will work
 x.z              # x.z should print 10
 ""\n""
+x.t = ""2017-02-24T10:18:50.36""
+x.t
+""\n""
 x
+""\n""
+date.now
 }}
 ");
                 var result = template.Render();
