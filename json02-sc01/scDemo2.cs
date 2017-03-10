@@ -113,8 +113,8 @@ js[0].Specs.Storage
         public static void Test3()
         {
             {
-                var template = Template.Parse(@"This is {{ text }},{{""\n""}} and {{myfunction}} from scriban!");
-                var model = new { text = "Hello Text" };
+                var template = Template.Parse(@"This is {{ text }} on {{ today }},{{""\n""}} and {{myfunction}} from scriban!");
+                var model = new { text = "Hello Text", today = DateTime.Today };
                 var scriptObject = new ScriptObject();
                 scriptObject.Import(model);
                 // Import the following delegate to scriptObject.myfunction (would be accessible as a global function)
