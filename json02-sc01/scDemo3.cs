@@ -80,11 +80,8 @@ namespace Demo3
 
         public static void Register(ScriptObject builtins)
         {
-            //if (builtins == null) throw new ArgumentNullException(nameof(builtins));
-
-            var stringObject = ScriptObject.From(typeof(StringFunctions));
-
-            builtins.SetValue("mystr", stringObject, true);
+            if (builtins == null) throw new ArgumentNullException(nameof(builtins));
+            builtins.Import(typeof(StringFunctions));
         }
     }
 
@@ -196,14 +193,14 @@ mystr:
 
         /// ////////////////////////////////////////////////////////////////////////////
         /// https://github.com/lunet-io/scriban/issues/12
-        public static void Test1()
+        public static void Test1A()
         {
             var globalFunction = new ScriptObject();
             // registerMyGlobalFunctions(globalFunction);
-            StringFunctions.Register(globalFunction);
+            //StringFunctions.Register(globalFunction);
+            globalFunction.Import(typeof(StringFunctions));
 
-            // var template = Template.Parse(@"This {{ ""is"" | mystr.upcase }} {{ text | mystr.downcase }} from scriban!");
-            var template = Template.Parse(@"This {{ ""is"" | string.capitalize }} {{ text | string.capitalize }} from scriban!");
+            var template = Template.Parse(@"This {{ ""is"" | upcase }} {{ text | downcase }} from scriban!");
             var model = new { text = "Bonjour le monde" };
             var context = new TemplateContext();
             context.PushGlobal(globalFunction);
@@ -212,11 +209,27 @@ mystr:
             localFunction.Import(model);
             context.PushGlobal(localFunction);
 
-            template.Render(context);
-            context.PopGlobal();
+            var result = template.Render(context);
+            Console.WriteLine("\n## Test3-1A, Customized functions");
+            Console.WriteLine(result);
+        }
 
-            var result = context.Output.ToString();
-            Console.WriteLine("\n## Test3-1, Customized functions");
+        public static void Test1B()
+        {
+            var globalFunction = new ScriptObject();
+            StringFunctions.Register(globalFunction);
+
+            var template = Template.Parse(@"This {{ ""is"" | upcase }} {{ text | downcase }} from scriban!");
+            var model = new { text = "Bonjour le monde" };
+            var context = new TemplateContext();
+            context.PushGlobal(globalFunction);
+
+            var localFunction = new ScriptObject();
+            localFunction.Import(model);
+            context.PushGlobal(localFunction);
+
+            var result = template.Render(context);
+            Console.WriteLine("\n## Test3-1B, Customized functions");
             Console.WriteLine(result);
         }
 
@@ -236,7 +249,7 @@ mystr:
 
             var globalFunction = new ScriptObject();
             // registerMyGlobalFunctions(globalFunction);
-            StringFunctions.Register(globalFunction);
+            //StringFunctions.Register(globalFunction);
 
             // var template = Template.Parse(@"This {{books[0].Title | mystr.downcase}} of {{ books[1].Author.Name | mystr.upcase }} is from scriban!");
             var template = Template.Parse(@"This {{books[0].Title | string.capitalize}} of {{ books[1].Author.Name | mystr.upcase }} is from scriban!");
