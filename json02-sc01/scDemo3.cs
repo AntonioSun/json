@@ -15,11 +15,47 @@ using Scriban.Runtime; // ScriptObject() & Import()
 
 namespace Demo3
 {
+
+    // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#imports-a-net-object-instance
+    public class MyObject
+    {
+        public MyObject()
+        {
+            Hello = "hello from property!";
+        }
+
+        // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#imports-functions-from-a-net-class
+        public static string HelloFunc()
+        {
+            return "hello from method1 of plain object!";
+        }
+
+        public string Hello { get; set; }
+    }
+
+    // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#automatic-functions-import-from-scriptobject
+    // We simply inherit from ScriptObject
+    // All functions defined in the object will be imported
+    public class MyCustomFunctions : ScriptObject
+    {
+        public static string Hello()
+        {
+            return "hello from method of ScriptObject!";
+        }
+
+        [ScriptMemberIgnore] // This method won't be imported
+        public static void NotImported()
+        {
+            // ...
+        }
+    }
+
     /// <summary>
     /// String functions available through the object 'string' in scriban.
     /// </summary>
     public static class StringFunctions
     {
+
         public static string Upcase(string text)
         {
             return text.ToUpperInvariant();
@@ -91,6 +127,70 @@ mystr:
 {{dump_members mystr}}
 ");
             result = template.Render();
+            Console.WriteLine(result);
+        }
+        public static void Test0A()
+        {
+            {
+                // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#imports-functions-from-a-net-class
+                var scriptObject1 = new ScriptObject();
+                scriptObject1.Import(typeof(MyObject));
+
+                var context = new TemplateContext();
+                context.PushGlobal(scriptObject1);
+
+                var template = Template.Parse("This is MyFunctions.Hello: `{{hello_func}}`");
+                var result = template.Render(context);
+
+                // Prints This is MyFunctions.Hello: `hello from method!`
+                Console.WriteLine(result);
+            }
+
+            {
+                // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#automatic-functions-import-from-scriptobject
+                var scriptObject1 = new MyCustomFunctions();
+
+                var context = new TemplateContext();
+                context.PushGlobal(scriptObject1);
+
+                var template = Template.Parse("This is MyFunctions.Hello: `{{hello}}`");
+                var result = template.Render(context);
+
+                // Prints This is MyFunctions.Hello: `hello from method!`
+                Console.WriteLine(result);
+            }
+
+            {
+                // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#imports-a-net-object-instance
+                var scriptObject1 = new ScriptObject();
+                // Here the renamer will just return a same member name as the original
+                // hence importing .NET member name as-is
+                scriptObject1.Import(new MyObject(), renamer: member => member.Name);
+
+                var context = new TemplateContext();
+                context.PushGlobal(scriptObject1);
+
+                var template = Template.Parse("This is Hello: `{{Hello}}`");
+                var result = template.Render(context);
+
+                // Prints This is MyFunctions.Hello: `hello from method!`
+                Console.WriteLine(result);
+            }
+        }
+
+        public static void Test0B()
+        {
+            // https://github.com/lunet-io/scriban/blob/master/doc/runtime.md#imports-functions-from-a-net-class
+            var scriptObject1 = new ScriptObject();
+            scriptObject1.Import(typeof(StringFunctions));
+
+            var context = new TemplateContext();
+            context.PushGlobal(scriptObject1);
+
+            var template = Template.Parse("This is StringFunctions.Upcase: `{{ \"is\" | upcase }}`");
+            var result = template.Render(context);
+
+            // Prints This is MyFunctions.Hello: `hello from method!`
             Console.WriteLine(result);
         }
 
