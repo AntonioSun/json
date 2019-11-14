@@ -22,7 +22,7 @@ class ProgTest
 
         Demo3.Program.Test0();
         Demo3.Program.Test1();
-        Demo3.Program.Test2();
+        //Demo3.Program.Test2();
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();

@@ -113,7 +113,7 @@ js[0].Specs.Storage
         public static void Test3()
         {
             {
-                var template = Template.Parse(@"This is {{ text }} on {{ today }},{{""\n""}} and {{myfunction}} from scriban!");
+                var template = Template.Parse(@"This is {{ text }} on {{ date.format = '%Y-%m-%dT%H:%M:%S'; date.now; today }},{{""\n""}} and {{myfunction}} from scriban!");
                 var model = new { text = "Hello Text", today = DateTime.Today };
                 var scriptObject = new ScriptObject();
                 scriptObject.Import(model);

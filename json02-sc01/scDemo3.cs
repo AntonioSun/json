@@ -102,7 +102,8 @@ mystr:
             // registerMyGlobalFunctions(globalFunction);
             StringFunctions.Register(globalFunction);
 
-            var template = Template.Parse(@"This {{ ""is"" | mystr.upcase }} {{ text | mystr.downcase }} from scriban!");
+            // var template = Template.Parse(@"This {{ ""is"" | mystr.upcase }} {{ text | mystr.downcase }} from scriban!");
+            var template = Template.Parse(@"This {{ ""is"" | string.capitalize }} {{ text | string.capitalize }} from scriban!");
             var model = new { text = "Bonjour le monde" };
             var context = new TemplateContext();
             context.PushGlobal(globalFunction);
@@ -137,11 +138,12 @@ mystr:
             // registerMyGlobalFunctions(globalFunction);
             StringFunctions.Register(globalFunction);
 
-            var template = Template.Parse(@"This {{books[0].Title | mystr.downcase}} of {{ books[1].Author.Name | mystr.upcase }} is from scriban!");
+            // var template = Template.Parse(@"This {{books[0].Title | mystr.downcase}} of {{ books[1].Author.Name | mystr.upcase }} is from scriban!");
+            var template = Template.Parse(@"This {{books[0].Title | string.capitalize}} of {{ books[1].Author.Name | mystr.upcase }} is from scriban!");
             var model = new { books = b };
             var context = new TemplateContext();
             // https://github.com/lunet-io/scriban/issues/14#issuecomment-276928045
-            context.MemberRenamer = new DelegateMemberRenamer(name => name);
+            //context.MemberRenamer = new DelegateMemberRenamer(name => name);
             context.PushGlobal(globalFunction);
 
             var localFunction = new ScriptObject();
